@@ -1,0 +1,41 @@
+/*Regex validate PIN code - 7kyu - C#
+ATM machines allow 4 or 6 digit PIN codes and PIN codes cannot contain anything but exactly 4 digits or exactly 6 digits.
+
+If the function is passed a valid PIN string, return true, else return false.
+
+eg:
+
+ValidatePin("1234") => true
+ValidatePin("12345") => false
+ValidatePin("a234") => false
+
+*/
+
+
+using System;
+using System.Text.RegularExpressions;
+using System.Linq;
+
+public class Kata
+{
+  public static bool ValidatePin(string pin)
+  {
+  Kata s = new Kata();
+    bool showPin = s.SetRules(pin);
+    return showPin;
+  }
+  
+  public bool SetRules(string pin)
+  {
+    if(!string.IsNullOrEmpty(pin)){
+      if(pin.Length ==4 || pin.Length==6 ){
+        if(pin.All(char.IsDigit)){
+          return true;
+        }
+        return false;
+      }
+      return false;
+    }
+    return false;
+  }
+}
