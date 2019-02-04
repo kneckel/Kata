@@ -1,0 +1,19 @@
+/*Break camelCase -6kyu - c#
+  Complete the solution so that the function will break up camel casing, using a space between words.
+
+Example
+Kata.BreakCamelCase("camelCasing") => "camel Casing"
+*/
+
+using System;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+public class Kata
+{
+  public static string BreakCamelCase(string str)
+  {
+    var camel = Regex.Replace(str, "(\\B[A-Z])", " $1");
+    return camel;
+  }
+}
