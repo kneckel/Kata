@@ -1,0 +1,20 @@
+/*Count characters in your string - 6kyu - C#
+The main idea is to count all the occuring characters(UTF-8) in string. If you have string like this aba then the result should be { 'a': 2, 'b': 1 }
+
+What if the string is empty ? Then the result should be empty object literal { }
+
+*/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+
+public class Kata
+{
+  public static Dictionary<char, int> Count(string str)
+  {
+    return str.GroupBy(c => c)
+                     .OrderBy(c => c.Key)
+                     .ToDictionary(grp => grp.Key, grp => grp.Count());
+  }
+}
