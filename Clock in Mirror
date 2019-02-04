@@ -1,0 +1,67 @@
+//...CodeWars... Clock in Mirror 6kyu
+//
+//
+/* Peter can see a clock in the mirror from the place he sits in the office. When he saw the clock shows 12:22
+He knows that the time is 11:38
+in the same manner:
+
+05:25 --> 06:35
+
+01:50 --> 10:10
+
+11:58 --> 12:02
+
+12:01 --> 11:59
+
+Please complete the function WhatIsTheTime(timeInMirror), where timeInMirror is the mirrored time (what Peter sees) as string.
+
+Return the real time as a string.
+
+Consider hours to be between 1 <= hour < 13.
+
+So there is no 00:20, instead it is 12:20.
+
+There is no 13:20, instead it is 01:20.
+
+*/
+
+using System;
+using System.Collections.Generic;
+using System.Linq;
+using System.Text.RegularExpressions;
+
+public class Kata
+    {
+        public static string WhatIsTheTime(string timeInMirror)
+        {
+            //return "05:25" --> "06:35";
+            int hours = 0, mins = 0;
+            
+            string extractDigits = Regex.Replace(timeInMirror, @"[^0-9]+", ""); 
+            string stringDigits = extractDigits.ToString();
+            string stringHours = stringDigits.Substring(0,2);
+            string stringMins = stringDigits.Substring(stringDigits.Length -2);
+            int mirroredHours = Int32.Parse(stringHours);
+            int mirroredMins = Int32.Parse(stringMins);
+
+            if(mirroredHours ==12 && mirroredMins == 00){
+              hours = mirroredHours;
+              mins = mirroredMins;
+            }else{
+              hours = 11-mirroredHours;
+              mins = 60-mirroredMins;
+              if(hours ==00){
+              hours = 12;
+              }
+            }
+            if(mirroredHours == 12 && mirroredMins!= 00){
+              hours = 12 - (13 - mirroredHours);
+              mins = 60-mirroredMins;             
+            }
+            if(mirroredMins == 00 && mirroredHours !=12){
+              hours = 12- mirroredHours;
+              mins = mirroredMins;
+            }
+            return hours.ToString("00") + ":" + mins.ToString("00");
+        }
+    }
