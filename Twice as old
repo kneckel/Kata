@@ -1,0 +1,33 @@
+/*Twice as old - 8kyu - c#
+Your function takes two arguments:
+
+current father's age (years)
+current age of his son (years)
+Сalculate how many years ago the father was twice as old as his son (or in how many years he will be twice as old).
+
+*/
+
+
+namespace Solution
+{
+  public class TwiceAsOldSolution
+  {
+    public static int TwiceAsOld(int dadYears, int sonYears)
+    {
+      int sonDouble = sonYears * 2;
+       if(sonYears == 0){
+         return dadYears;
+       
+       }
+       if(dadYears> sonDouble){
+         int solution = dadYears - sonDouble;
+         return solution;
+      }
+      if(dadYears < sonDouble){       
+         int solution = sonDouble - dadYears;
+         return solution;     
+       }
+       return 0;
+    }
+  }
+}
