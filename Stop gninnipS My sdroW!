@@ -1,0 +1,41 @@
+/*Stop gninnipS My sdroW! - 6kyu - C#
+Write a function that takes in a string of one or more words, and returns the same string, but with all five or more letter words reversed (Just like the name of this Kata). Strings passed in will consist of only letters and spaces. Spaces will be included only when more than one word is present.
+
+
+Examples:
+
+spinWords( "Hey fellow warriors" ) => returns "Hey wollef sroirraw" 
+spinWords( "This is a test") => returns "This is a test" 
+spinWords( "This is another test" )=> returns "This is rehtona test"
+
+*/
+
+using System.Collections.Generic;
+using System.Linq;
+using System;
+using System.Text.RegularExpressions;
+
+public class Kata
+{
+  public static string SpinWords(string sentence)
+        {
+            if (!string.IsNullOrEmpty(sentence))
+            {  
+                string[] sentenceList = sentence.Split(' ');
+                var sentenceFixed = "";
+                foreach (string word in sentenceList)
+                {
+                    if (word.Length >= 5)
+                    {
+                        char[] chars = word.ToCharArray();
+                        Array.Reverse(chars);
+                        sentenceFixed += new string(chars) + " ";                     
+                    }
+                    else{sentenceFixed += word + " ";}
+                }                
+                sentenceFixed = Regex.Replace(sentenceFixed, @"\s+$", "");
+                return sentenceFixed;
+            }
+            return "";
+        }
+}
