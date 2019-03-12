@@ -1,0 +1,34 @@
+/* Simple Pig Latin- 5kyu - c#
+Move the first letter of each word to the end of it, then add "ay" to the end of the word. Leave punctuation marks untouched.
+
+Examples
+Kata.PigIt("Pig latin is cool"); // igPay atinlay siay oolcay
+Kata.PigIt("Hello world !");     // elloHay orldway !
+*/
+
+using System.Linq;
+using System.Text;
+using System.Threading.Tasks;
+using System.Text.RegularExpressions;
+
+using System.Collections.Generic;
+using System;
+
+public class Kata
+{
+  public static string PigIt(string str)
+        {
+            var wordConcat = "";
+            List<string> strList = str.Split(' ').ToList();            
+            foreach (var word in strList)
+            {
+                var modifyword = word;
+                var getfirstletter = word[0];
+                modifyword = modifyword.Substring(1);
+                modifyword += getfirstletter + "ay" + " ";
+                wordConcat += modifyword;    
+            }
+
+            return wordConcat.TrimEnd();
+        }
+}
