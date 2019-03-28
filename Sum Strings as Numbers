@@ -1,0 +1,28 @@
+/*Sum Strings as Numbers- 4kyu - JavaScript
+Given the string representations of two integers, return the string representation of the sum of those integers.
+
+For example:
+
+sumStrings('1','2') // => '3'
+A string representation of an integer will contain no characters besides the ten numerals "0" to "9".
+Must work with numbers larger than 15 digits without abreviating the number
+*/
+
+function sumStrings(a, b) {
+    let sum = "";
+    var anumLength = a.length;
+    var bnumLength = b.length;
+    var anum, bnum, temp,digitSum, carry = 0;
+    var bigman = (anumLength > bnumLength) ? anumLength : bnumLength;
+
+    for (var i = 0; i < bigman; i++) {
+        anum = (i >= anumLength) ? 0 : parseInt(a[anumLength - i - 1]);
+        bnum = (i >= bnumLength) ? 0 : parseInt(b[bnumLength - i - 1]);
+        temp = (carry + anum + bnum).toString();
+        digitSum = temp.charAt(temp.length - 1);
+        carry = parseInt(temp.substr(0, temp.length - 1));
+        carry = (carry) ? carry : 0;
+        sum = (i === bigman - 1) ? temp + sum : digitSum + sum;
+    }
+    return sum.replace(/^(0+)/g, '');
+}
